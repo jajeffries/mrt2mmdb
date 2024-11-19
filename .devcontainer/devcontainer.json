@@ -1,0 +1,21 @@
+{
+    "name": "Go Dev Container",
+    "image": "golang:1.23",
+    "workspaceFolder": "/workspace",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+    "mounts": [
+        "source=${localWorkspaceFolder}/../data,target=/data,type=bind,consistency=cached"
+    ],
+    "runArgs": ["--init"],
+    "customizations": {
+        "vscode":{
+            "settings": {
+                "terminal.integrated.shell.linux": "/bin/bash"
+            },
+            "extensions": [
+                "golang.go"
+            ]
+        }
+    },
+    "postCreateCommand": "go mod tidy && go build -o mrt2mmdb main.go"
+}
